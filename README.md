@@ -1,5 +1,7 @@
 # Work.nation
 
+![architecture](images/architecture.png "Work.nation architecture")
+
 ## Ethereum "Claim" Contract
 
 ## Reputon format
