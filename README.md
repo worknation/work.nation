@@ -5,6 +5,9 @@
 
 ## Ethereum "Claim" Contract
 
+[This is the Ethereum smart contract for attesting to work.nation claims](Claim.sol).
+uPort users make attestations through this contract to claim they used skills on projects; confirm the claims of others; and claim project permanodes and project profiles.
+
 ## Reputon format
 
 ```js
