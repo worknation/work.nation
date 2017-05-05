@@ -36,6 +36,33 @@
 }
 ```
 
-## Permanodes
+## Project Permanode
 
-## Project Schema
+```js
+// https://ipfs.io/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr
+
+{
+  creator: "0xfdab345e368120a5ba99549c1f74371cd73cdb93",
+  random: "LHfpaCvFMgyxTKCawtmn1qdbc91UhM6n1cL2aQRki9a",
+  timestamp: "2017-05-05T20:54:55.337Z",
+  type: "permanode"
+}
+```
+
+## Project Profile
+
+```js
+// https://ipfs.io/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp
+
+{
+  address: "https://chicken-robot.example.com",
+  contact: "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3", // uport id
+  imageUrl: "https://s-media-cache-ak0.pinimg.com/736x/2b/22/f8/2b22f82e7843d732c5def05055529c55.jpg",
+  name: "Chicken Robot",
+  permanodeId: "/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr",
+  skills: "Chicken Wrangling, Robot Design",
+  timestamp: "2017-05-05T20:54:55.918Z",
+  type: "project"
+}
+
+```
