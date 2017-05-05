@@ -67,3 +67,9 @@
 }
 
 ```
+
+## Schema
+
+[![architecture](images/diagram.work.nation.png "Work.nation schema")](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/diagram.work.nation.png)
+[Full Size](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/diagram.work.nation.png)
+
