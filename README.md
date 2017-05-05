@@ -70,6 +70,6 @@
 
 ## Schema
 
-[![architecture](images/diagram.work.nation.png "Work.nation schema")](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/diagram.work.nation.png)
-[Full Size](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/diagram.work.nation.png)
+[![architecture](images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
+[Full Size](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
 
