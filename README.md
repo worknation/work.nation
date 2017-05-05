@@ -1,6 +1,7 @@
 # Work.nation
 
-![architecture](images/architecture.png "Work.nation architecture")
+[![architecture](images/architecture.png "Work.nation architecture")](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
+[Full Size](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
 
 ## Ethereum "Claim" Contract
 
