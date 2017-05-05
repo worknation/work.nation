@@ -68,7 +68,7 @@
 
 ```
 
-## Schema
+## Reputation Index Schema
 
 [![architecture](images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
 [Full Size](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
