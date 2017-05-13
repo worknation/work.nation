@@ -19,6 +19,7 @@ uPort users make attestations through this contract to claim they used skills on
         "rater": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Harlan
         "assertion": "Ruby on Rails",
         "rated": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Harlan
+        "project": "/ipfs/QmPuESDUDwpEsUtHNTmRDKs98KpohrGSxhLmxX9o5JFvtg"
         "rating": 1,
         "sample-size": 1,
         "generated": 1492205001  // unix timestamp
@@ -34,7 +35,7 @@ uPort users make attestations through this contract to claim they used skills on
         "rated": "QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnj", // Harlan"s signed claim of ROR skills
         "rating": 1, // 1 = master, 0.5 = confirm
         "normal-rating": 0.5,
-        "sample-size": 1
+        "sample-size": 1,
         "generated": 1492205002
     }]
 }
