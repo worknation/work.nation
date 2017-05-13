@@ -2,6 +2,12 @@
 
 This is a proof of concept demo which allows the creation of skill claims and confirmations as signed claims, using [uPort](https://www.uport.me) + [IPFS](https://ipfs.io) + [Ethereum](https://ethereum.org).
 
+## Live demo
+
+https://demo.worknation.io
+
+## Architecture
+
 A visual overview of the components and dataflows between them:
 
 [![architecture](images/architecture.png "Work.nation architecture")](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/architecture.png)
