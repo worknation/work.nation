@@ -21,9 +21,9 @@ Users create projects by entering project attributes and confirming with uPort. 
 Technically, the creation of a project is broken into two steps:
 
 1. Create a project "permanode" (inspired by [Camlistore's permanodes](https://camlistore.org/doc/schema/permanode)) -- an immutable anchor containing data that will never change:
-  - the creator's uPort ID
-  - a timestamp
-  - a random string to ensure a unique ID (hash)
+      - the creator's uPort ID
+      - a timestamp
+      - a random string to ensure a unique ID (hash)
 1. Create a project profile which references that permanode ID -- this is where all mutable data is stored; and a new profile will be created when any update is required
 
 ### Project Permanodes
