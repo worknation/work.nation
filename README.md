@@ -4,19 +4,19 @@ This is a proof of concept demo which allows the creation of skill claims and co
 
 A visual overview of the components and dataflows between them:
 
-[![architecture](images/architecture.png "Work.nation architecture")](https://cdn.rawgit.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
+[![architecture](images/architecture.png "Work.nation architecture")](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/architecture.png)
 
 ## Login
 
 Users log in with [uPort](https://www.uport.me), which means that they log in with true decentralized authentication: an identity that is entirely owned and controlled by them, on their devices, with no username or password ever stored in the Work.nation system.
 
-[![](https://cdn.rawgit.com/worknation/work.nation/475c26c3697d210481a73629ba639495a5b57a84/images/login.png)](https://cdn.rawgit.com/worknation/work.nation/475c26c3697d210481a73629ba639495a5b57a84/images/login.png)
+[![](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/login.png)](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/login.png)
 
 ## Projects
 
 Users create projects by entering project attributes and confirming with uPort. They can then search for skilled contributors to invite to the project.
 
-[![](https://cdn.rawgit.com/worknation/work.nation/b13afe18a3a2acc3e80a6728a9464c565bd4d08c/images/projects.png)](https://cdn.rawgit.com/worknation/work.nation/b13afe18a3a2acc3e80a6728a9464c565bd4d08c/images/projects.png)
+[![](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/projects.png)](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/projects.png)
 
 Technically, the creation of a project is broken into two steps:
 
@@ -73,7 +73,7 @@ Example project profile:
 
 Users can self-claim skills used on a given project, and confirm skill claims made by other users.
 
-[![](https://cdn.rawgit.com/worknation/work.nation/62ff6cacd426c00b85a6e808f9719a59aeee1086/images/claims.png)](https://cdn.rawgit.com/worknation/work.nation/62ff6cacd426c00b85a6e808f9719a59aeee1086/images/claims.png)
+[![](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/claims.png)](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/claims.png)
 
 ### Skill Claim
 
@@ -139,7 +139,7 @@ Work.nation is fully open source under an Apache 2 license.  The code is availab
 
 The Rails server acts as a "reputation index".  Below is a snapshot of the database schema.
 
-[![architecture](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
+[![architecture](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/diagram.work.nation.png)
 
 ## Contributing
 
