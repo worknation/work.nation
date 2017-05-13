@@ -1,51 +1,43 @@
 # Work.nation
 
-[![architecture](images/architecture.png "Work.nation architecture")](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
-[Full Size](https://raw.githubusercontent.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
+This is a proof of concept demo which allows the creation of skill claims and confirmations as signed claims, using [uPort](https://www.uport.me) + [IPFS](https://ipfs.io) + [Ethereum](https://ethereum.org).
 
-## Ethereum "Claim" Contract
+A visual overview of the components and dataflows between them:
 
-[This is the Ethereum smart contract for attesting to work.nation claims](Claim.sol).
-uPort users make attestations through this contract to claim they used skills on projects; confirm the claims of others; and claim project permanodes and project profiles.
+[![architecture](images/architecture.png "Work.nation architecture")](https://cdn.rawgit.com/worknation/work.nation/18f74a6c96247fc8c18a12a2849daca4642191aa/images/architecture.png)
 
-## Reputon format
+## Login
 
-```js
-// Self claim: Harlan claim Ruby on Rails skill
-// this claim has IPFS address QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnj
-{
-    "application": "skills",
-    "reputons": [{
-        "rater": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Harlan
-        "assertion": "Ruby on Rails",
-        "rated": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Harlan
-        "project": "/ipfs/QmPuESDUDwpEsUtHNTmRDKs98KpohrGSxhLmxX9o5JFvtg"
-        "rating": 1,
-        "sample-size": 1,
-        "generated": 1492205001  // unix timestamp
-    }]
-}
+Users log in with [uPort](https://www.uport.me), which means that they log in with true decentralized authentication: an identity that is entirely owned and controlled by them, on their devices, with no username or password ever stored in the Work.nation system.
 
-// Confirmation: Alice confirms Harlan's Ruby on Rails skill
-{
-    "application": "skills",
-    "reputons": [{
-        "rater": "0x9df6d7f675d119228eae858213587c0687d0a498", // Alice
-        "assertion": "confirm",
-        "rated": "QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnj", // Harlan"s signed claim of ROR skills
-        "rating": 1, // 1 = master, 0.5 = confirm
-        "normal-rating": 0.5,
-        "sample-size": 1,
-        "generated": 1492205002
-    }]
-}
-```
+[![](https://cdn.rawgit.com/worknation/work.nation/475c26c3697d210481a73629ba639495a5b57a84/images/login.png)](https://cdn.rawgit.com/worknation/work.nation/475c26c3697d210481a73629ba639495a5b57a84/images/login.png)
 
-## Project Permanode
+## Projects
+
+Users create projects by entering project attributes and confirming with uPort. They can then search for skilled contributors to invite to the project.
+
+[![](https://cdn.rawgit.com/worknation/work.nation/b13afe18a3a2acc3e80a6728a9464c565bd4d08c/images/projects.png)](https://cdn.rawgit.com/worknation/work.nation/b13afe18a3a2acc3e80a6728a9464c565bd4d08c/images/projects.png)
+
+Technically, the creation of a project is broken into two steps:
+
+1. Create a project "permanode" (inspired by [Camlistore's permanodes](https://camlistore.org/doc/schema/permanode)) -- an immutable anchor containing data that will never change:
+  - the creator's uPort ID
+  - a timestamp
+  - a random string to ensure a unique ID (hash)
+1. Create a project profile which references that permanode ID -- this is where all mutable data is stored; and a new profile will be created when any update is required
+
+### Project Permanodes
+
+Creating a project permanode has the following steps:
+
+1. Create permanode JSON as described above
+1. The JSON is canonicalized (sorted by keys)
+1. The canonical JSON is stored in IPFS
+1. The resulting IPFS ID (hash) is added to an Ethereum contract _by the Ethereum address of the uPort user_
+
+Example permanode:
 
 ```js
-// https://ipfs.io/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr
-
 {
   creator: "0xfdab345e368120a5ba99549c1f74371cd73cdb93",
   random: "LHfpaCvFMgyxTKCawtmn1qdbc91UhM6n1cL2aQRki9a",
@@ -54,26 +46,101 @@ uPort users make attestations through this contract to claim they used skills on
 }
 ```
 
-## Project Profile
+This permanode has the ID [`/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr`](https://ipfs.io/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr).
+
+### Project Profiles
+
+We can then create a profile which references the above project permanode.  The process is largely identical to the permanode creation steps in IPFS and Ethereum.
+
+Example project profile:
 
 ```js
-// https://ipfs.io/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp
-
 {
   address: "https://chicken-robot.example.com",
-  contact: "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3", // uport id
+  contact: "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",                // uport id of project contact
   imageUrl: "https://s-media-cache-ak0.pinimg.com/736x/2b/22/f8/2b22f82e7843d732c5def05055529c55.jpg",
   name: "Chicken Robot",
-  permanodeId: "/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr",
+  permanodeId: "/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr",  // project permanode
   skills: "Chicken Wrangling, Robot Design",
   timestamp: "2017-05-05T20:54:55.918Z",
   type: "project"
 }
-
 ```
+
+<!-- This project profile has the ID [`/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp`](https://ipfs.io/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp). -->
+
+## Skill Claims and Confirmations
+
+Users can self-claim skills used on a given project, and confirm skill claims made by other users.
+
+[![](https://cdn.rawgit.com/worknation/work.nation/62ff6cacd426c00b85a6e808f9719a59aeee1086/images/claims.png)](https://cdn.rawgit.com/worknation/work.nation/62ff6cacd426c00b85a6e808f9719a59aeee1086/images/claims.png)
+
+### Skill Claim
+
+Technically, the process of creating each claim is identical in the IPFS and Ethereum steps described in project creation above. The differences are only in the content of the JSON:
+
+1. Each skill claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
+1. `rater` and `rated` are both set to the skill claimant
+1. The extra field `project` is added, containing the project permanode ID
+
+For example, Alice claims that she has used Ruby on Rails skills on the project _Chicken Robot_ created above:
+
+```js
+{
+    "application": "skills",
+    "reputons": [{
+        "rater": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Alice
+        "rated": "0x57fab088be2f8bfd5d4cbf849c2568672e4f3db3",  // Alice
+        "assertion": "Ruby on Rails",
+        "project": "/ipfs/QmUbGAEJk7HZXTSWV7dFyrbNecRuhGnbPvYCbgB6UtBHBr"
+        "rating": 1,
+        "sample-size": 1,
+        "generated": 1492205001                                 // unix timestamp
+    }]
+}
+```
+
+This claim has the IPFS address `QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnd`.
+
+### Example Skill Confirmation
+
+The IPFS and Ethereum steps are identical to those described above. The differences are in the content:
+
+1. Like skill claims, each confirmation claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
+1. `rater` is the uPort address of the confirmer
+1. `rated` is the IPFS ID of the original skill claim
+
+For example, Bob confirms that Alice has used her Ruby on Rails skills on project _Chicken Robot_:
+
+```js
+{
+    "application": "skills",
+    "reputons": [{
+        "rater": "0x9df6d7f675d119228eae858213587c0687d0a498",     // Alice
+        "assertion": "confirm",
+        "rated": "QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnd", // Alice's signed claim of ROR skills
+        "rating": 1,                                               // 1 = master, 0.5 = confirm
+        "normal-rating": 0.5,
+        "sample-size": 1,
+        "generated": 1492205002
+    }]
+}
+```
+
+## Code Bases
+
+Work.nation is fully open source under an Apache 2 license.  The code is available in these locations:
+
+- Ruby on Rails (API only) [server](https://github.com/worknation/server.work.nation)
+- React [client](https://github.com/worknation/client.work.nation)
+- "Claim" [solidity contract](https://github.com/worknation/work.nation/blob/master/Claim.sol) for registering the IPFS addresses of claims in Ethereum
 
 ## Reputation Index Schema
 
-[![architecture](images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
-[Full Size](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
+The Rails server acts as a "reputation index".  Below is a snapshot of the database schema.
 
+[![architecture](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png "Work.nation schema")](https://cdn.rawgit.com/worknation/work.nation/d745cb062e44ae72531826bc63d311a587596c83/images/diagram.work.nation.png)
+
+## Contributing
+
+Contributions and pull requests are most welcome.  If you have a big idea, we encourage you to open an issue in one of the repos above to discuss it.  Small ideas or fixes just go for it!
