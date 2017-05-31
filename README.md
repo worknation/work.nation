@@ -122,7 +122,7 @@ For example, Bob confirms that Alice has used her Ruby on Rails skills on projec
 {
     "application": "skills",
     "reputons": [{
-        "rater": "0x9df6d7f675d119228eae858213587c0687d0a498",     // Alice
+        "rater": "0x9df6d7f675d119228eae858213587c0687d0a498",     // Bob
         "assertion": "confirm",
         "rated": "QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnd", // Alice's signed claim of ROR skills
         "rating": 1,                                               // 1 = master, 0.5 = confirm
