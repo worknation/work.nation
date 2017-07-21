@@ -1,6 +1,6 @@
 # Work.nation
 
-This is a proof of concept demo which allows the creation of skill claims and confirmations as signed claims, using [uPort](https://www.uport.me) + [IPFS](https://ipfs.io) + [Ethereum](https://ethereum.org).
+This is a proof of concept demo which allows the creation of contribution claims and confirmations as signed claims, using [uPort](https://www.uport.me) + [IPFS](https://ipfs.io) + [Ethereum](https://ethereum.org).
 
 ## Live demo
 
@@ -20,7 +20,7 @@ Users log in with [uPort](https://www.uport.me), which means that they log in wi
 
 ## Projects
 
-Users create projects by entering project attributes and confirming with uPort. They can then search for skilled contributors to invite to the project.
+Users create projects by entering project attributes, expected contribuitons and confirming with uPort. They can then search for contributors based on past contributions to invite to the project.
 
 [![](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/projects.png)](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/projects.png)
 
@@ -75,21 +75,21 @@ Example project profile:
 
 <!-- This project profile has the ID [`/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp`](https://ipfs.io/ipfs/QmXSgeC1zc95a1bTLkdBCjDXSah8S4MWVB59hupAvXbVtp). -->
 
-## Skill Claims and Confirmations
+## Contribution Claims and Confirmations
 
-Users can self-claim skills used on a given project, and confirm skill claims made by other users.
+Users can self-claim contributions provided to a given project, and confirm contribution claims made by other users.
 
 [![](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/claims.png)](https://cdn.rawgit.com/worknation/work.nation/e6be095be0c1c92efadb2617238c2ac8351b6011/images/claims.png)
 
-### Skill Claim
+### Contribution Claim
 
 Technically, the process of creating each claim is identical in the IPFS and Ethereum steps described in project creation above. The differences are only in the content of the JSON:
 
-1. Each skill claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
-1. `rater` and `rated` are both set to the skill claimant
+1. Each contribution claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
+1. `rater` and `rated` are both set to the contribution claimant
 1. The extra field `project` is added, containing the project permanode ID
 
-For example, Alice claims that she has used Ruby on Rails skills on the project _Chicken Robot_ created above:
+For example, Alice claims that she has contributed Ruby on Rails code on the project _Chicken Robot_ created above:
 
 ```js
 {
@@ -108,15 +108,15 @@ For example, Alice claims that she has used Ruby on Rails skills on the project 
 
 This claim has the IPFS address `QmX3eFcpPL3bN3EBzcPnUH4fTiJyWi3G8NxEZjfKCGqrnd`.
 
-### Example Skill Confirmation
+### Example Contribution Confirmation
 
 The IPFS and Ethereum steps are identical to those described above. The differences are in the content:
 
-1. Like skill claims, each confirmation claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
+1. Like contribution claims, each confirmation claim is represented in [IETF Reputon](https://tools.ietf.org/html/rfc7071) format
 1. `rater` is the uPort address of the confirmer
-1. `rated` is the IPFS ID of the original skill claim
+1. `rated` is the IPFS ID of the original contribution claim
 
-For example, Bob confirms that Alice has used her Ruby on Rails skills on project _Chicken Robot_:
+For example, Bob confirms that Alice has provided Ruby on Rails contributions on project _Chicken Robot_:
 
 ```js
 {
